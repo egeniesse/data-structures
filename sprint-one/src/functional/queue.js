@@ -16,7 +16,7 @@ var Queue = function() {
     if (stackSize !== 0){
       stackSize--;
     }
-    return storage[stackSize];
+    return storage[0];
   };
 
   someInstance.size = function() {
