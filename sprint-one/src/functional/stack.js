@@ -8,6 +8,7 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
+    storage[stackSize] = value;
     stackSize++;
   };
 
@@ -15,6 +16,8 @@ var Stack = function() {
     if(stackSize!==0){
       stackSize--;
     }
+
+    return storage[stackSize];
 
   };
 
