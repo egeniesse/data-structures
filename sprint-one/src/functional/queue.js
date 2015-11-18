@@ -7,6 +7,8 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
+    
+    storage[stackSize] = value;
     stackSize++;
   };
 
@@ -14,6 +16,7 @@ var Queue = function() {
     if (stackSize !== 0){
       stackSize--;
     }
+    return storage[stackSize];
   };
 
   someInstance.size = function() {
