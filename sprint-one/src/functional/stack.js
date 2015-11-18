@@ -12,7 +12,7 @@ var Stack = function() {
   };
 
   someInstance.pop = function() {
- 
+    stackSize--;
 
   };
 
