@@ -11,7 +11,7 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-  
+    stackSize--;
   };
 
   someInstance.size = function() {
