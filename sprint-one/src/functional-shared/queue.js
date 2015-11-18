@@ -3,6 +3,7 @@ var Queue = function() {
   // but try not not reference your old code in writing the new style.
   this.size = queueMethods.size;
   this.enqueue = queueMethods.enqueue;
+  this.dequeue = queueMethods.dequeue;
   this.stackSize = 0;
 
   return this;
@@ -15,6 +16,10 @@ var queueMethods = {
 
   enqueue : function(){
     this.stackSize++;
+  },
+
+  dequeue : function(){
+    this.stackSize--;
   }
 };
 
