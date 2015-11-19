@@ -14,7 +14,7 @@ var Queue = function() {
 
 var queueMethods = {
   size : function(){
-    return this.stackSize;
+    return this.stackSize - this.out;
   },
 
   enqueue : function(value){
@@ -23,10 +23,12 @@ var queueMethods = {
   },
 
   dequeue : function(){
-    if(this.stackSize!==0){
-      this.stackSize--;
+    if(this.stackSize - this.out > 0){
+      
+      var output = this.storage[this.out];
+      this.out++;
+      return output;
     }
-    return this.storage[0];
   }
 };
 
