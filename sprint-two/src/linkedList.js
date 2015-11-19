@@ -33,6 +33,13 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
+    var found = false;
+    for(var key in list){
+      if(list[key].value === target){
+        found = true;
+      }
+    }
+    return found;
   };
 
   return list;
