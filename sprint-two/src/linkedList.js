@@ -10,13 +10,22 @@ var LinkedList = function() {
     //Add new node to list
     //if head is not null then update the tail
     if(list.head === null){
-      list.head = node.value;
+      list.head = node;
     }
     list[node.value] = node; 
     list.tail = node;
   };
 
   list.removeHead = function() {
+    var findHead = function(node){
+      if(node.next !== list.head){
+        findHead(node.next)
+      } else {
+        list.head = node;
+        node.next = null;
+      }
+    }
+    findHead(list.tail);
   };
 
   list.contains = function(target) {
