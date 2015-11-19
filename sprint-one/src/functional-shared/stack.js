@@ -6,6 +6,7 @@ var Stack = function() {
   stack.stackSize = 0;
   stack.push = stackMethods.push;
   stack.size = stackMethods.size;
+  stack.pop = stackMethods.pop;
   return stack;
 
 };
@@ -18,6 +19,11 @@ var stackMethods = {
   push : function(){
     this.stackSize++;
   },
+  pop : function(){
+    if (this.stackSize !== 0){
+      this.stackSize--;
+    }
+  }
 };
 
 
