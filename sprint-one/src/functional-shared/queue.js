@@ -20,7 +20,9 @@ var queueMethods = {
   },
 
   dequeue : function(){
-    this.stackSize--;
+    if(this.stackSize!==0){
+      this.stackSize--;
+    }
   }
 };
 
