@@ -1,5 +1,6 @@
 var Tree = function(value) {
-  var newTree = {};
+  var newTree = Object.create(treeMethods);
+  
   newTree.value = value;
 
   // your code here
@@ -16,6 +17,7 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
+
 };
 
 
