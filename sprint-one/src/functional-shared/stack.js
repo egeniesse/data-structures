@@ -4,6 +4,7 @@ var Stack = function() {
   // but try not not reference your old code in writing the new style.
   
   stack.stackSize = 0;
+  stack.storage = {};
   stack.push = stackMethods.push;
   stack.size = stackMethods.size;
   stack.pop = stackMethods.pop;
@@ -16,12 +17,14 @@ var stackMethods = {
     return this.stackSize;
 
   },
-  push : function(){
+  push : function(value){
+    this.storage[this.stackSize]= value;
     this.stackSize++;
   },
   pop : function(){
     if (this.stackSize !== 0){
       this.stackSize--;
+      return this.storage[this.stackSize];
     }
   }
 };
