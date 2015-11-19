@@ -17,15 +17,19 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
+    var oldHead = list.head;
     var findHead = function(node){
-      if(node.next !== list.head){
+      if(node.next !== list.head && node.next !== null){
         findHead(node.next)
-      } else {
+      } else if (node.next === null){
+        return node;
+      }else {
         list.head = node;
         node.next = null;
       }
     }
     findHead(list.tail);
+    return oldHead.value;
   };
 
   list.contains = function(target) {
