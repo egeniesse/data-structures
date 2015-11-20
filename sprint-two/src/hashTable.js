@@ -28,20 +28,31 @@ HashTable.prototype.insert = function(k, v) {
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
-  for(var i=0; i<bucket.length; i++){
-    if(bucket[i][0]===k){
-      return bucket[i][1];
+  if(bucket[0]){ 
+    for(var i=0; i<bucket.length; i++){
+      if(bucket[i][0]===k){
+        return bucket[i][1];
+      }
     }
+  } else {
+    return undefined;
   }
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.each(function(value, key, library){
-    if(index === key){
-      delete library[key];
+  var bucket = this._storage.get(index);
+  for(var i=0;i<bucket.length;i++){
+    if(bucket[i][0] === k){
+      delete bucket[i];
     }
-  })
+  }
+
+  // this._storage.each(function(value, key, library){
+  //   if(index === key){
+  //     delete library[key];
+  //   }
+  // })
 };
 
 
