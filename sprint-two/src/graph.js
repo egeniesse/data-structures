@@ -9,7 +9,10 @@ var Graph = function() {
 // ------------------------
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
-  this.nodes[node] = node;
+  this.nodes[node] = {
+    value : node,
+    edge : {}
+  };
 
 };
 
@@ -33,16 +36,33 @@ Graph.prototype.removeNode = function(node) {
 // ------------------------
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
+
+  if(this.nodes[fromNode].edge.hasOwnProperty(toNode) && this.nodes[toNode].edge.hasOwnProperty(fromNode)){
+    return true;
+  }
+  return false;
 };
 
 // ------------------------
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
+
+  this.nodes[fromNode].edge[toNode] = toNode;
+  this.nodes[toNode].edge[fromNode] = fromNode;
+
 };
 
 // ------------------------
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+  //check if there is an edge
+  if(this.hasEdge(fromNode, toNode)){
+    delete this.nodes[fromNode].edge[toNode];
+    delete this.nodes[toNode].edge[fromNode];
+  }
+
+  //remove the edge property from node
+
 };
 
 // ------------------------
