@@ -8,7 +8,21 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(index,[k,v]);
+  var bucket = this._storage.get(index);
+  var wasFound = false;
+
+  if(bucket){
+    for(var i=0;i<bucket.length;i++){
+      if(bucket[i][0]===k){
+        bucket[i][1]=v;
+        wasFound = true;
+        break;
+      }
+    }
+  }
+  if(!wasFound){
+    this._storage.set(index,[k,v]);
+  }
 };
 
 HashTable.prototype.retrieve = function(k) {
