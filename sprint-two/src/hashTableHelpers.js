@@ -21,7 +21,10 @@ var LimitedArray = function(limit) {
   };
   limitedArray.set = function(index, value) {
     checkLimit(index);
-    storage[index] = value;
+    if(!Array.isArray(storage[index])){
+      storage[index] = [];
+    }
+    storage[index].push(value);
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
