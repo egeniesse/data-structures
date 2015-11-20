@@ -29,18 +29,25 @@ BinarySearchTree.prototype.insert = function(value){
 BinarySearchTree.prototype.contains = function(value){
 
   var findValue = function(currentNode){
-    if(currentNode.value === undefined){
-      return false;
-    } else if (currentNode.value === value){
+    if (currentNode.value === value){
       return true;
     } else if(currentNode.value < value){
-      return findValue(currentNode.right);
+      if(currentNode.right){
+        return findValue(currentNode.right);
+      } else {
+        return false
+      }
     } else if(currentNode.value > value){
-      return findValue(currentNode.left)
+      if (currentNode.left){
+        return findValue(currentNode.left)
+      } else {
+        return false;
+      }
     } else{
       return false;
     }
   };
+
   return findValue(this);
 };
 BinarySearchTree.prototype.depthFirstLog = function(){};
