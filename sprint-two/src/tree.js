@@ -42,6 +42,15 @@ treeMethods.contains = function(target) {
 };
 
 treeMethods.removeFromParent = function(){
+  //Look through the child array of the parent array
+  for(var i=0; i < this.parent.children.length; i++){
+    //If the value at the array index equals to this
+    if(this.parent.children[i] === this){
+      //Splice it out of the array
+      this.parent.children.splice(i,1);
+    }
+  } 
+  
 
 };
 
