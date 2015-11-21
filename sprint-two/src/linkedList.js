@@ -9,13 +9,11 @@ var LinkedList = function() {
     node.next = list.tail;
     if(list.head){
       list.tail.previous = node;
+    } else {
+      list.head = node;
     }
     //Add new node to list
     //if head is not null then update the tail
-    if(!list.head){
-      list.head = node;
-    }
-    list[node.value] = node; 
     list.tail = node;
   };
 
@@ -25,17 +23,6 @@ var LinkedList = function() {
     if(list.head){
       list.head.next = null;
     }
-    // var findHead = function(node){
-    //   if(node.next !== list.head && node.next !== null){
-    //     findHead(node.next)
-    //   } else if (node.next === null){
-    //     return node;
-    //   }else {
-    //     list.head = node;
-    //     node.next = null;
-    //   }
-    // }
-    // findHead(list.tail);
     return oldHead.value;
   };
 
@@ -72,7 +59,16 @@ var LinkedList = function() {
     // reassign the list.head property to reflect the new node
   };
 
-  list.removeTail = function(){};
+  list.removeTail = function(){
+    //Identify the tail node
+    var oldTail = list.tail;
+    //Set tail equal to the next tail node
+    list.tail = oldTail.next;
+    //Reset the new tail node pointer to null
+    list.tail.previous = null;
+    //return the old tail's value
+    return oldTail.value;
+  };
 
   return list;
 };
