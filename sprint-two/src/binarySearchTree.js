@@ -11,13 +11,13 @@ BinarySearchTree.prototype.insert = function(value){
   var node = new Node(value);
   var findEmptySpace = function(currentNode, nextNode){
     if(currentNode.value < nextNode.value){
-      if(currentNode.right === undefined){
+      if(!currentNode.right){
         currentNode.right = nextNode;
       } else {
         findEmptySpace(currentNode.right, nextNode)
       }
     } else if(currentNode.value > nextNode.value){
-      if(currentNode.left === undefined){
+      if(!currentNode.left){
         currentNode.left = nextNode;
       } else {
         findEmptySpace(currentNode.left, nextNode)
@@ -50,7 +50,16 @@ BinarySearchTree.prototype.contains = function(value){
 
   return findValue(this);
 };
-BinarySearchTree.prototype.depthFirstLog = function(){};
+
+BinarySearchTree.prototype.depthFirstLog = function(func){
+
+  var iterateTree = function(currentNode){
+
+
+  };
+
+  return results;
+};
 
 var Node = function(value){
   this.value = value;
