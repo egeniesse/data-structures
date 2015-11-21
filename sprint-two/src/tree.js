@@ -2,6 +2,7 @@ var Tree = function(value) {
   var newTree = Object.create(treeMethods);
 
   newTree.value = value;
+  newTree.parent = null;
 
   // your code here
   newTree.children = [];  // fix me
@@ -13,7 +14,9 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   // your code here
-  this.children.push(new Tree(value));
+  var treeNode = new Tree(value);
+  treeNode.parent = this;
+  this.children.push(treeNode);
 };
 
 treeMethods.contains = function(target) {
@@ -36,6 +39,10 @@ treeMethods.contains = function(target) {
   };
   searchChildren(this);
   return found;
+};
+
+treeMethods.removeFromParent = function(){
+
 };
 
 
