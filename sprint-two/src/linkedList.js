@@ -45,6 +45,10 @@ var LinkedList = function() {
     return searchList(list.tail);
   };
 
+  list.addToHead = function(value){};
+
+  list.removeTail = function(value){};
+
   return list;
 };
 
