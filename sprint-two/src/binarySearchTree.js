@@ -1,8 +1,8 @@
 var BinarySearchTree = function(value) {
   var bsTree = Object.create(BinarySearchTree.prototype);
   bsTree.value = value;
-  bsTree.left = undefined;
-  bsTree.right = undefined;
+  bsTree.left;
+  bsTree.right;
   return bsTree;
   
 };
@@ -54,11 +54,21 @@ BinarySearchTree.prototype.contains = function(value){
 BinarySearchTree.prototype.depthFirstLog = function(func){
 
   var iterateTree = function(currentNode){
+    
+    func(currentNode.value);
+    debugger;
 
+    if(currentNode.left){
+      iterateTree(currentNode.left);
+    } 
+    if(currentNode.right){
+      iterateTree(currentNode.right);
+    }
 
   };
 
-  return results;
+  iterateTree(this);
+
 };
 
 var Node = function(value){
