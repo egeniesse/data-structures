@@ -12,7 +12,7 @@ var LinkedList = function() {
     }
     //Add new node to list
     //if head is not null then update the tail
-    if(list.head === null){
+    if(!list.head){
       list.head = node;
     }
     list[node.value] = node; 
@@ -55,9 +55,19 @@ var LinkedList = function() {
   list.addToHead = function(value){
     // create a new node and assign the value to the node
     var node = new Node(value);
+    var oldHead = list.head
+
+    if(!list.head){
+      list.head = node;
+    } else {
+      list.head = node;
+      node.previous = oldHead;
+    }
+    if (!list.tail){
+      list.tail = node;
+    }
 
     // find the current head, point the current head to the new node
-    
     // point new node to the old head
     // reassign the list.head property to reflect the new node
   };
