@@ -3,30 +3,31 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
+  this._size = 0;
 };
 
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var bucket = this._storage.get(index);
-  var wasFound = false;
+  var bucket = this._storage.get(index) || [];
 
-  if(!bucket){
-    this._storage.set(index,[]);
-    bucket = this._storage.get(index);
-  }
-  if(bucket){
-    for(var i=0;i<bucket.length;i++){
-      if(bucket[i][0]===k){
-        bucket[i][1]=v;
-        wasFound = true;
-        break;
-      }
+  for(var i=0;i<bucket.length;i++){
+    var tuple = bucket[i];
+    if(tuple[0]===k){
+      var oldValue = tuple[1];
+      tuple[1]=v;
+      return oldValue;
     }
   }
-  if(!wasFound){
-    bucket.push([k,v]);
+  
+  bucket.push([k,v]);
+  this._storage.set(index, bucket);
+  this._size++;
+
+  if((this._size/this._limit) >= .75){
+    this._resize();
   }
+
 };
 
 
@@ -52,14 +53,43 @@ HashTable.prototype.remove = function(k) {
     if(bucket[i][0] === k){
       //splice
       bucket.splice(i, 1);
+      if((this._size/this._limit) <= .25){
+        this._resize();
+      }
+      this._size--;
     }
   }
 
-  // this._storage.each(function(value, key, library){
-  //   if(index === key){
-  //     delete library[key];
-  //   }
-  // })
+};
+
+HashTable.prototype._resize = function(){
+  var newLimit;
+
+  if((this._size/this._limit) >= .75){
+    newLimit = Math.floor(this._limit * 2);
+  } else{
+    this._size
+    debugger;
+    newLimit =  Math.floor(this._limit * 0.5);
+  }
+
+  this._storage.each(function(bucket, index, storage){
+    if(bucket){
+      for(var i = 0; i<bucket.length; i++){
+        var tuple = bucket[i];
+        
+        if(getIndexBelowMaxForKey(tuple[0],newLimit) !== index){
+          this.insert(tuple[0],tuple[1]);
+          bucket.splice(i,1);
+          i--;
+          this._size--;
+        }
+      }
+    }
+  }.bind(this));
+  
+  this._limit = newLimit;
+
 };
 
 
