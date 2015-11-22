@@ -56,7 +56,6 @@ BinarySearchTree.prototype.depthFirstLog = function(func){
   var iterateTree = function(currentNode){
     
     func(currentNode.value);
-    debugger;
 
     if(currentNode.left){
       iterateTree(currentNode.left);
