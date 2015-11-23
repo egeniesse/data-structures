@@ -15,13 +15,14 @@ var LimitedArray = function(limit) {
   var storage = [];
 
   var limitedArray = {};
+
   limitedArray.get = function(index) {
     checkLimit(index);
     return storage[index];
   };
   limitedArray.set = function(index, value) {
     checkLimit(index);
-    storage[index].push(value);
+    storage[index] = value;
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
@@ -34,7 +35,7 @@ var LimitedArray = function(limit) {
       throw new Error('setter requires a numeric index for its first argument');
     }
     if (limit <= index) {
-     // throw new Error('Error trying to access an over-the-limit index');
+     throw new Error('Error trying to access an over-the-limit index');
     }
   };
 
@@ -44,7 +45,7 @@ var LimitedArray = function(limit) {
 // This is a "hashing function". You don't need to worry about it, just use it
 // to turn any string into an integer that is well-distributed between the
 // numbers 0 and `max`
-var getindexBelowMaxForKey = function(str, max) {
+var getIndexBelowMaxForKey = function(str, max) {
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
     hash = (hash<<5) + hash + str.charCodeAt(i);

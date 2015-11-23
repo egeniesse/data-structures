@@ -14,13 +14,13 @@ BinarySearchTree.prototype.insert = function(value){
       if(!currentNode.right){
         currentNode.right = nextNode;
       } else {
-        findEmptySpace(currentNode.right, nextNode)
+        findEmptySpace(currentNode.right, nextNode);
       }
     } else if(currentNode.value > nextNode.value){
       if(!currentNode.left){
         currentNode.left = nextNode;
       } else {
-        findEmptySpace(currentNode.left, nextNode)
+        findEmptySpace(currentNode.left, nextNode);
       }
     }
   };
@@ -35,11 +35,11 @@ BinarySearchTree.prototype.contains = function(value){
       if(currentNode.right){
         return findValue(currentNode.right);
       } else {
-        return false
+        return false;
       }
     } else if(currentNode.value > value){
       if (currentNode.left){
-        return findValue(currentNode.left)
+        return findValue(currentNode.left);
       } else {
         return false;
       }
@@ -74,7 +74,7 @@ var Node = function(value){
   this.value = value;
   this.right = undefined;
   this.left = undefined;
-}
+};
 /*
  * Complexity: What is the time complexity of the above functions?
  */
