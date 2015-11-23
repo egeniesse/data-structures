@@ -21,10 +21,6 @@ var LimitedArray = function(limit) {
   };
   limitedArray.set = function(index, value) {
     checkLimit(index);
-    console.log(value)
-    if(storage[index] === undefined){
-      storage[index] = [];
-    }
     storage[index].push(value);
   };
   limitedArray.each = function(callback) {
